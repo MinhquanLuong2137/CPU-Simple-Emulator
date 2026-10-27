@@ -1,4 +1,7 @@
 package com.cpu.instruction;
 
-public class Instruction {
+import com.cpu.hardware.CPU;
+
+public abstract class Instruction {
+    public abstract void execute(CPU cpu);
 }
