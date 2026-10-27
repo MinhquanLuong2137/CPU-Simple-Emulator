@@ -74,12 +74,26 @@ public class CPU {
                 return new SubInstruction(rd, rs1, rs2);
             }
             default:{
-                System.out.println("Register index out of range");
+                System.out.println("Unknown Instruction");
                 return null;
             }
         }
     }
 
+    public void step(){
+        if(!running){
+            return;
+        }
+
+        int pc = reg.getProgramCounter();
+        int rawInstruction = memory.read(pc);
+        reg.incrementPC();
+
+        Instruction instr = decode(rawInstruction);
+        if(instr != null){
+            instr.execute(this);
+        }
+    }
 
 
 }
