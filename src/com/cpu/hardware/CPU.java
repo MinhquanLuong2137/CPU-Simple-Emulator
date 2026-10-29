@@ -73,6 +73,15 @@ public class CPU {
                 reg.incrementPC();
                 return new SubInstruction(rd, rs1, rs2);
             }
+            case 0x50:{
+                int rs1 = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int rs2 = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int target = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                return new BeqInstruction(rs1, rs2, target);
+            }
             default:{
                 System.out.println("Unknown Instruction");
                 return null;
