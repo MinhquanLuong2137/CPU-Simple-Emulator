@@ -7,47 +7,47 @@ public class Main {
         CPU cpu = new CPU();
 
         int[] program = {
-// 1. Nạp dữ liệu ban đầu
-                0x20, 0, 0b11000011, // [0..2]   LOAD_CONST R0, 195 (0xC3)
-                0x20, 1, 0b00001111, // [3..5]   LOAD_CONST R1, 15  (0x0F)
-                0x20, 2, 2,          // [6..8]   LOAD_CONST R2, 2
+// [0..8] Nạp dữ liệu ban đầu
+                0x20, 0, 5,       // [0..2]   LOAD_CONST R0, 5
+                0x20, 1, 10,      // [3..5]   LOAD_CONST R1, 10
+                0x20, 2, 5,       // [6..8]   LOAD_CONST R2, 5
 
-                // 2. Test AND: R3 = R0 & R1
-                0x31, 3, 0, 1,       // [9..12]  AND R3, R0, R1
+                // --- TEST BEQ ---
+                // 1. BEQ (5 == 5 -> Đúng, Nhảy tới 16)
+                0x50, 0, 2, 16,   // [9..12]  BEQ R0, R2, 16
+                0x20, 3, 99,      // [13..15] LOAD_CONST R3, 99 (Bị nhảy qua)
+                0x20, 3, 1,       // [16..18] LOAD_CONST R3, 1  (R3 = 1)
 
-                // 3. Test OR:  R3 = R0 | R1
-                0x32, 3, 0, 1,       // [13..16] OR  R3, R0, R1
+                // 2. BEQ (5 == 10 -> Sai, Chạy tiếp)
+                0x50, 0, 1, 29,   // [19..22] BEQ R0, R1, 29
+                0x20, 3, 2,       // [23..25] LOAD_CONST R3, 2  (R3 = 2)
 
-// Nạp dữ liệu
-                0x20, 0, 100,      // [0..2]   LOAD_CONST R0, 100
-                0x20, 1, 20,       // [3..5]   LOAD_CONST R1, 20
-                0x20, 2, 2,        // [6..8]   LOAD_CONST R2, 2
+                // --- TEST BLT ---
+                // 3. BLT (5 < 10 -> Đúng, Nhảy tới 33)
+                0x51, 0, 1, 33,   // [26..29] BLT R0, R1, 33
+                0x20, 3, 99,      // [30..32] LOAD_CONST R3, 99 (Bị nhảy qua)
+                0x20, 3, 3,       // [33..35] LOAD_CONST R3, 3  (R3 = 3)
 
-                // 1. ADD:  R3 = R0 + R1  (100 + 20 = 120)
-                0x30, 3, 0, 1,     // [9..12]  ADD R3, R0, R1
+                // 4. BLT (10 < 5 -> Sai, Chạy tiếp)
+                0x51, 1, 0, 43,   // [36..39] BLT R1, R0, 43
+                0x20, 3, 4,       // [40..42] LOAD_CONST R3, 4  (R3 = 4)
 
-                // 2. SUB:  R3 = R0 - R1  (100 - 20 = 80)
-                0x40, 3, 0, 1,     // [13..16] SUB R3, R0, R1
+                // --- TEST BGE ---
+                // 5. BGE (10 >= 5 -> Đúng, Nhảy tới 50)
+                0x52, 1, 0, 50,   // [43..46] BGE R1, R0, 50
+                0x20, 3, 99,      // [47..49] LOAD_CONST R3, 99 (Bị nhảy qua)
+                0x20, 3, 5,       // [50..52] LOAD_CONST R3, 5  (R3 = 5)
 
-                // 3. SUB (Zero Flag Test): R3 = R0 - R0 (100 - 100 = 0 -> ZeroFlag = true)
-                0x40, 3, 0, 0,     // [17..20] SUB R3, R0, R0
+                // 6. BGE (5 >= 5 -> Đúng, Nhảy tới 60)
+                0x52, 0, 2, 60,   // [53..56] BGE R0, R2, 60
+                0x20, 3, 99,      // [57..59] LOAD_CONST R3, 99 (Bị nhảy qua)
+                0x20, 3, 6,       // [60..62] LOAD_CONST R3, 6  (R3 = 6)
 
-                // 4. AND:  R3 = R0 & R1  (100 & 20 = 4)
-                0x31, 3, 0, 1,     // [21..24] AND R3, R0, R1
+                // 7. BGE (5 >= 10 -> Sai, Chạy tiếp)
+                0x52, 0, 1, 70,   // [63..66] BGE R0, R1, 70
+                0x20, 3, 7,       // [67..69] LOAD_CONST R3, 7  (R3 = 7)
 
-                // 5. OR:   R3 = R0 | R1  (100 | 20 = 116)
-                0x32, 3, 0, 1,     // [25..28] OR  R3, R0, R1
-
-                // 6. XOR:  R3 = R0 ^ R1  (100 ^ 20 = 112)
-                0x33, 3, 0, 1,     // [29..32] XOR R3, R0, R1
-
-                // 7. SLL:  R3 = R1 << R2 (20 << 2 = 80)
-                0x34, 3, 1, 2,     // [33..36] SLL R3, R1, R2
-
-                // 8. SRL:  R3 = R1 >> R2 (20 >> 2 = 5)
-                0x35, 3, 1, 2,     // [37..40] SRL R3, R1, R2
-
-                0xFF               // [41]     HALT
+                0xFF              // [70]     HALT
         };        cpu.loadProgram(program, 0);
 
 
