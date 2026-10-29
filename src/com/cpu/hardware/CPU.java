@@ -82,6 +82,24 @@ public class CPU {
                 reg.incrementPC();
                 return new BeqInstruction(rs1, rs2, target);
             }
+            case 0x51:{
+                int rs1 = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int rs2 = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int target = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                return new BltInstruction(rs1, rs2, target);
+            }
+            case 0x52:{
+                int rs1 = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int rs2 = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int target = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                return new BgeInstruction(rs1, rs2, target);
+            }
             default:{
                 System.out.println("Unknown Instruction");
                 return null;
