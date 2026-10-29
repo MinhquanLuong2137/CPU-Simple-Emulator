@@ -7,20 +7,11 @@ public class Main {
         CPU cpu = new CPU();
 
         int[] program = {
-                0x20, 0, 5,       // [0..2]   LOAD_CONST R0, 5
-                0x20, 1, 10,      // [3..5]   LOAD_CONST R1, 10
-
-                // Test BLT (5 < 10 -> Nhảy tới 13)
-                0x51, 0, 1, 13,   // [6..9]   BLT R0, R1, 13
-                0x20, 2, 99,      // [10..12] LOAD_CONST R2, 99 (Bị bỏ qua nếu BLT đúng)
-                0x20, 2, 1,       // [13..15] LOAD_CONST R2, 1
-
-                // Test BGE (5 >= 10 -> Không nhảy)
-                0x52, 0, 1, 26,   // [16..19] BGE R0, R1, 26 (Không nhảy)
-                0x20, 3, 2,       // [20..22] LOAD_CONST R3, 2  (Được thực thi)
-                0x10, 27,         // [23..24] JUMP 27
-                0x20, 3, 99,      // [25..26] LOAD_CONST R3, 99 (Bị nhảy qua)
-                0xFF              // [27]     HALT
+                0x20, 0, 100,     // [0..2]  LOAD_CONST R0, 100 (địa chỉ cơ sở)
+                0x20, 1, 42,      // [3..5]  LOAD_CONST R1, 42  (giá trị cần ghi)
+                0x70, 1, 5, 0,    // [6..9]  SW R1, 5(R0)       (ghi 42 vào RAM[105])
+                0x60, 2, 5, 0,    // [10..13] LW R2, 5(R0)      (đọc từ RAM[105] vào R2)
+                0xFF              // [14]    HALT
         };        cpu.loadProgram(program, 0);
 
 
@@ -33,6 +24,14 @@ public class Main {
         for(int i = 0; i < 4; i++){
             System.out.print("R" + i + ": ");
             System.out.println(cpu.getReg().getRegister(i));
+        }
+        System.out.println("===================");
+        for(int i = 0; i < 128; i++){
+            System.out.print("Ram[" + i + "]: ");
+            System.out.print(cpu.getMemory().read(i) + " | ");
+            if(i % 10 == 9){
+                System.out.println();
+            }
         }
     }
 

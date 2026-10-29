@@ -100,6 +100,26 @@ public class CPU {
                 reg.incrementPC();
                 return new BgeInstruction(rs1, rs2, target);
             }
+            case 0x60:{
+                int rd = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int offset = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int rs = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+
+                return new LwInstruction(rd, offset, rs);
+            }
+            case 0x70:{
+                int rd = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int offset = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int rs = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+
+                return new SwInstruction(rd, offset, rs);
+            }
             default:{
                 System.out.println("Unknown Instruction");
                 return null;
