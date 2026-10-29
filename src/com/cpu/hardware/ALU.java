@@ -16,6 +16,11 @@ public class ALU {
     public int xor(int a, int b) {
         return (a ^ b) & 0xFF;
     }
-
+    public int sll(int a, int b) {
+        return (a << (b & 0x07)) & 0xFF;
+    }
+    public int srl(int a, int b) {
+        return (a >> (b & 0x07)) & 0xFF;
+    }
 
 }

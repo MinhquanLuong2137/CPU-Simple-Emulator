@@ -64,6 +64,51 @@ public class CPU {
                 reg.incrementPC();
                 return new AddInstruction(rd, rs1, rs2);
             }
+            case 0x31:{
+                int rd = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int rs1 = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int rs2 = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                return new AndInstruction(rd, rs1, rs2);
+            }
+            case 0x32:{
+                int rd = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int rs1 = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int rs2 = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                return new OrInstruction(rd, rs1, rs2);
+            }
+            case 0x33:{
+                int rd = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int rs1 = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int rs2 = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                return new XorInstruction(rd, rs1, rs2);
+            }
+            case 0x34:{
+                int rd = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int rs1 = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int rs2 = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                return new SllInstruction(rd, rs1, rs2);
+            }
+            case 0x35:{
+                int rd = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int rs1 = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                int rs2 = memory.read(reg.getProgramCounter());
+                reg.incrementPC();
+                return new SrlInstruction(rd, rs1, rs2);
+            }
             case 0x40:{
                 int rd = memory.read(reg.getProgramCounter());
                 reg.incrementPC();
