@@ -3,6 +3,8 @@
 A lightweight, modular 8-bit CPU emulator and software assembler written in Java. The project simulates a Von Neumann computer architecture and provides an assembly toolchain using Object-Oriented Programming (OOP) principles, the Command Pattern for instruction execution, and the Strategy Pattern for assembly encoding.
 
 ---
+## Live Demo
+Mô phỏng CPU 8-bit trực tiếp trên trình duyệt: [Click here to run Web Emulator](https://minhquanluong2137.github.io/CPU-Simple-Emulator/)
 
 ## Technical Specifications
 
@@ -166,10 +168,6 @@ Ram[10]: 64 | Ram[11]: 3 | Ram[12]: 1 | Ram[13]: 0 | Ram[14]: 112 | Ram[15]: 35 
 ```
 
 ---
-
-## Live Demo
-Mô phỏng CPU 8-bit trực tiếp trên trình duyệt: [Click vào đây để chạy Web Emulator](https://minhquanluong2137.github.io/CPU-Simple-Emulator/)
-
 
 ## License
 
