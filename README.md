@@ -4,7 +4,7 @@ A lightweight, modular 8-bit CPU emulator and software assembler written in Java
 
 ---
 ## Live Demo
-Mô phỏng CPU 8-bit trực tiếp trên trình duyệt: [Click here to run Web Emulator](https://minhquanluong2137.github.io/CPU-Simple-Emulator/)
+Link github-pages: [Click here to run Web Emulator](https://minhquanluong2137.github.io/CPU-Simple-Emulator/)
 
 ## Technical Specifications
 
