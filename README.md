@@ -168,7 +168,7 @@ Ram[10]: 64 | Ram[11]: 3 | Ram[12]: 1 | Ram[13]: 0 | Ram[14]: 112 | Ram[15]: 35 
 ---
 
 ## Live Demo
-Mô phỏng CPU 8-bit trực tiếp trên trình duyệt: [Click vào đây để chạy Web Emulator](minhquanluong2137.github.io/CPU-Simple-Emulator)
+Mô phỏng CPU 8-bit trực tiếp trên trình duyệt: [Click vào đây để chạy Web Emulator](https://minhquanluong2137.github.io/CPU-Simple-Emulator/)
 
 
 ## License
