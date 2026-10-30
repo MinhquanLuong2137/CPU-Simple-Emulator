@@ -31,5 +31,4 @@ bin/
 
 ### Others
 *.iml
-web/
-src/com/cpu/app/WebServer.java
+gh-pages/
