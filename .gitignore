@@ -29,5 +29,7 @@ bin/
 ### Mac OS ###
 .DS_Store
 
-
+### Others
 *.iml
+web/
+src/com/cpu/app/WebServer.java
